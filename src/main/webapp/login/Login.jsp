@@ -15,7 +15,7 @@
 				로그인
 			</div>
 			<div class ="int-area">
-				<input type="text" name ="id" id="id" autocomplete ="off" required>
+				<input type="text" name ="userid" id="userid" autocomplete ="off" required>
 				<label for ="id">USER NAME</label>
 			</div>
 			<div class ="int-area">
@@ -45,7 +45,7 @@
 	</section>
 	
 	<script type="text/javascript">
-		let id =$('#id');
+		let id =$('#userid');
 		let pwd = $('#pwd');
 		let btn = $('#btn');
 		
@@ -55,7 +55,7 @@
 				setTimeout(function(){
 					$('label').removeClass('warning');
 				},1500);
-			}else if{
+			}else if($(pwd).val()==""){
 				$(pw).next('label').addClass('warning');
 				setTimeout(function(){
 					$('label').removeClass('warning');
