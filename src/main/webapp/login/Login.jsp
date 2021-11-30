@@ -15,7 +15,7 @@
 				로그인
 			</div>
 			<div class ="int-area">
-				<input type="text" name ="userid" id="userid" autocomplete ="off" required>
+				<input type="text" name ="id" id="id" autocomplete ="off" required>
 				<label for ="id">USER NAME</label>
 			</div>
 			<div class ="int-area">
@@ -45,7 +45,7 @@
 	</section>
 	
 	<script type="text/javascript">
-		let id =$('#userid');
+		let id =$('#id');
 		let pwd = $('#pwd');
 		let btn = $('#btn');
 		
