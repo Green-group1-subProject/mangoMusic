@@ -10,7 +10,7 @@
 <body>
 	
 	<section class ="login-form">
-		<form action="">
+		<form method="post"	action="Login_ok.jsp">
 			<div class ="log-area">
 				로그인
 			</div>
