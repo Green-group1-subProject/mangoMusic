@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>망고뮤직:달달한 음악이 필요할 때</title>
-        <link rel="icon" type="image/x-icon" href="../images/logos/망고로고2k.png" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="../css/styles.css" rel="stylesheet" />
-	    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-      <style type="text/css">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<style type="text/css">
 	* {
   margin: 0;
   padding: 0;
@@ -366,41 +360,55 @@ $(document).ready(function() {
 	  });
 	});
 </script>
-
-		
 </head>
-   
-<body id="page-top">
-       	<!-- 왼쪽로고 -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav" 
-        style="border-top:5px solid #FFBC50; border-bottom:2px solid #FFBC50; height:75px;" >
-        	<div class="container px-2">
-                <a class="navbar-brand" href="#page-top">
-                <img src="../images/logos/망고로고2k.png" style='height:40px; margin-left:50px;'></a>
-                
-                <!-- 가운데 네비게이션 -->
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ms-auto text-center" style="float: none; margin:0 auto; 
-                    font-weight: bold;">
-                        <li class="nav-item"><a class="nav-link" href="">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Chart</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Board</a></li>
-                    </ul>
-         		 </div>
-                    
-                    <!-- 오른쪽 프로필 -->
-                    <div class="dropdown text-end">
-			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-			            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-			          </a>
-			          <ul class="dropdown-menu text-small" style="">
-			            <li><a class="dropdown-item" href="#">New project...</a></li>
-			            <li><a class="dropdown-item" href="#">Settings</a></li>
-			            <li><a class="dropdown-item" href="#">Profile</a></li>
-			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="#">Sign out</a></li>
-			          </ul>
-			        </div>
-     		</div>
- 		</nav>
+<body>
 
+<div class="player">
+  <div class="title-wrap">
+    <div class="playlistIcon">
+      <i class="fa fa-list"></i>
+    </div>
+    <div class="clearfix"></div>
+    <div class="trackDetails ">
+      <span class="artist"></span>
+     
+      <span class="title"></span>
+    </div>
+    <div class="controls">
+      <div class="rew">
+        <i class="fas fa-backward"></i>
+      </div>
+      <div class="play">
+        <svg viewBox="0 0 25 25" xml:space="preserve" style="visibility: visible;">
+           <defs><rect x="-49.5" y="-132.9" width="446.4" height="366.4"></rect></defs>
+          <g><circle fill="none" cx="12.5" cy="12.5" r="10.8"></circle>
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M8.7,6.9V18c0,0,0.2,1.4,1.8,0l8.1-4.8c0,0,1.2-1.1-1-2L9.8,6.5 C9.8,6.5,9.1,6,8.7,6.9z"></path>
+          </g>
+       </svg>
+      </div>
+      <div class="pause">
+          <svg  viewBox="0 0 25 25" xml:space="preserve" style="visibility: visible;">
+            <g>
+              <rect x="6" y="4.6" width="2.8" height="13.7"></rect>
+              <rect x="12" y="4.6" width="2.8" height="13.7"></rect>
+            </g>
+          </svg>
+      </div>
+
+      <div class="fwd">
+        <i class="fas fa-forward"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul class="playlist" id="playlist">
+  <li audioURL="../music/1.mp3" artist="오브제(Obze)">내가 좋아하는 지구는</li>
+  <li audioURL="http://picdn.net/shutterstock/audio/429215/preview/preview.mp3" artist="김두원">바뀌니까 환경이다</li>
+  <li audioURL="http://picdn.net/shutterstock/audio/397292/preview/preview.mp3" artist="최강석기시대">지구야 미안해</li>
+  <li audioURL="http://picdn.net/shutterstock/audio/423269/preview/preview.mp3" artist="그리니(Greeny)">지구에게 환심사기</li>
+  <li audioURL="http://picdn.net/shutterstock/audio/423269/preview/preview.mp3" artist="Project Twenty">초록지구를</li>
+  <li audioURL="http://picdn.net/shutterstock/audio/423269/preview/preview.mp3" artist="이효주">green switch</li>
+</ul>
+</body>
+</html>
