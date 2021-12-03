@@ -1,5 +1,5 @@
-<%@page import="com.mangomusic.soundtrack.model.SoundTrackDAO"%>
-<%@page import="com.mangomusic.soundtrack.model.SoundTrackVO"%>
+<%@page import="com.mangoMusic.soundtrack.model.SoundTrackDAO"%>
+<%@page import="com.mangoMusic.soundtrack.model.SoundTrackVO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
