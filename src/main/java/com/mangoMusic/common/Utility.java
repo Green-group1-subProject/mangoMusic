@@ -1,4 +1,4 @@
-package com.mangomusic.common;
+package com.mangoMusic.common;
 
 import java.util.Date;
 

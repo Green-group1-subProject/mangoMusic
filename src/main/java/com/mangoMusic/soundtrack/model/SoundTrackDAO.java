@@ -1,4 +1,4 @@
-package com.mangomusic.soundtrack.model;
+package com.mangoMusic.soundtrack.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mangomusic.db.ConnectionPoolMgr;
+import com.mangoMusic.db.ConnectionPoolMgr;
 
 public class SoundTrackDAO {
 	private ConnectionPoolMgr pool;
