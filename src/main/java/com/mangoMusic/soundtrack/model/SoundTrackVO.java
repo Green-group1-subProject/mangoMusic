@@ -1,4 +1,4 @@
-package com.mangomusic.soundtrack.model;
+package com.mangoMusic.soundtrack.model;
 
 public class SoundTrackVO {
 	//음악

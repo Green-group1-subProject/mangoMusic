@@ -1,4 +1,4 @@
-package com.mangomusic.soundtrack.model;
+package com.mangoMusic.soundtrack.model;
 
 import java.sql.SQLException;
 import java.util.List;

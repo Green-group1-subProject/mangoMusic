@@ -1,4 +1,4 @@
-package com.mangomusic.db;
+package com.mangoMusic.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
