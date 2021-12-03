@@ -1,7 +1,7 @@
-<%@page import="com.mangomusic.soundtrack.model.SoundTrackVO"%>
+<%@page import="com.mangoMusic.soundtrack.model.SoundTrackVO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.SQLException"%>
-<%@page import="com.mangomusic.soundtrack.model.SoundTrackDAO"%>
+<%@page import="com.mangoMusic.soundtrack.model.SoundTrackDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
