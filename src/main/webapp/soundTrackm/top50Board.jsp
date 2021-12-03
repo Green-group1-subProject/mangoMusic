@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-하나 둘
-
+<h1>top50Board</h1>
 </body>
 </html>
