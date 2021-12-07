@@ -9,10 +9,14 @@
         <link rel="icon" type="image/x-icon" href="../images/logos/망고로고2k.png" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles.css" rel="stylesheet" />
-	    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-      <style type="text/css">
+<%
+	String id=(String)session.getAttribute("id");
+%>
+
+<style type="text/css">
 	* {
   margin: 0;
   padding: 0;
@@ -389,16 +393,15 @@ $(document).ready(function() {
          		 </div>
                     
                     <!-- 오른쪽 프로필 -->
+                    <span class="badge rounded-pill bg-warning" style="margin-right:10px;">Premium</span>
                     <div class="dropdown text-end">
 			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 			            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
 			          </a>
 			          <ul class="dropdown-menu text-small" style="">
-			            <li><a class="dropdown-item" href="#">New project...</a></li>
-			            <li><a class="dropdown-item" href="#">Settings</a></li>
-			            <li><a class="dropdown-item" href="#">Profile</a></li>
+			            <li><a class="dropdown-item" href="../myPage/editMyInfo.jsp">마이 페이지</a></li>
 			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="#">Sign out</a></li>
+			            <li><a class="dropdown-item" href="#">로그아웃</a></li>
 			          </ul>
 			        </div>
      		</div>
