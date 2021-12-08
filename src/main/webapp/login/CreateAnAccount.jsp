@@ -79,7 +79,6 @@ $(function(){
 	
 	});
 	
-	
 	$('#email3').hide();
 	$('#email2').change(function(){
 		if($(this).val()=="etc"){
@@ -120,9 +119,6 @@ $(function(){
 		return true;
 		
 	}
-
-
-
 	
 	function validate_phone(tel){
 		var pattern = new RegExp(/^[0-9]*$/g);
@@ -132,13 +128,25 @@ $(function(){
 		닫기 대괄호(]) 뒤의 * 기호는 0번 이상 반복 */
 	}
 	
-	
-	
 	$('#btnChkId').click(function move_valuecheck_id(){
 		var id_value=window.open('idCheck.jsp','idCheck',
 				'width=430,height=200,location=no,status=no,scrollbars=yes');
 	});
 	
+	$('#EmailReject').click(function(){
+		open('EmailReject.jsp','zip',
+		'width=500,height=200,left=0,top=0,location=yes,resizable=yes');
+	});
+	
+	$('#terms').click(function(){
+		open('Agreement_detail.jsp','zip',
+				'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+	});
+	
+	$('#userInfo').click(function(){
+		open('Agreement_detail2.jsp','zip',
+				'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+	});
 
 
 });
@@ -233,9 +241,9 @@ $(function(){
 <footer>
 <div class="row" style="text-align:center; ">
 <div class="div7">
-<a href="" id="terms">이용약관 </a>|
-<a href="" id="userInfo"> 개인정보처리방침 </a>|
-<a href="" id ="EmailReject"> 이메일주소무단수집거부 </a>|
+<a href="javascript:void(0);" id="terms">이용약관 </a>|
+<a href="javascript:void(0);" id="userInfo"> 개인정보처리방침 </a>|
+<a href="javascript:void(0);" id ="EmailReject"> 이메일주소무단수집거부 </a>|
 <a href=""> 고객센터</a><br>
 </div>
 <div class="div8">

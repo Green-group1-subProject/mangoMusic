@@ -98,6 +98,54 @@ public class MemberDAO {
 		}
 	}
 	
+	public MemberVO selectByEmail(String email)  throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		MemberVO vo = new MemberVO();
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select*from mango_member where email =?";
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				
+				String pwd = rs.getString("pwd");
+				int Mno = rs.getInt("Mno");
+				String name = rs.getString("name");
+				String id = rs.getString("id");
+				String tel = rs.getString("tel");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				Timestamp outdate = rs.getTimestamp("outdate");
+				String membership = rs.getString("membership");
+				int playCount = rs.getInt("playCount");
+				
+				vo.setId(id);
+				vo.setPwd(pwd);
+				vo.setmNo(Mno);
+				vo.setName(name);
+				vo.setEmail(email);
+				vo.setTel(tel);
+				vo.setRegdate(regdate);
+				vo.setOutdate(outdate);
+				vo.setMembership(membership);
+				vo.setPlayCount(playCount);
+				
+			}
+			System.out.println("회원조회 결과 vo="+ vo+", 매개변수 email"+email);
+		
+			return vo;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+	
 	//동한추가
 	public List<MemberVO> selectAll() throws SQLException{
 		Connection con=null;

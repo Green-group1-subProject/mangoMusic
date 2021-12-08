@@ -446,7 +446,7 @@ $(document).ready(function() {
 			          <ul class="dropdown-menu text-small" style="">
 			            <li><a class="dropdown-item" href="../login/Login.jsp">로그인</a></li>
 			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="../login/CreateAnAccount.jsp">회원가입</a></li>
+			            <li><a class="dropdown-item" href="../login/Agreement.jsp">회원가입</a></li>
 			          </ul>
 			        </div>
                 <% }%>
