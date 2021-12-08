@@ -13,7 +13,7 @@
 
 <script>
 	alert('로그아웃되었습니다.');
-	location.href="../inc/top.jsp";
+	location.href="../soundTrackm/index.jsp";
 </script>
 </body>
 </html>

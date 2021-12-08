@@ -195,12 +195,6 @@ h2{
     margin-left: -5px;
 }
 
-header{
-	position: relative;
-	width: 100%;
-	height: 70px;
-	background: #ffbc50;
-}
 #customized{
 	text-align: center;
 }
@@ -261,6 +255,9 @@ a:hover{
 	font-size: 0.9em;
 }
 
+#mainsection{
+	padding:-144px 0;
+}
 </style>
 </script>
 <script type="text/javascript">
@@ -302,12 +299,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<header>
-</header>
 <section id="main">
 <div class="container">
-  <h2>artist record</h2>
-   <section class="customer-logos slider">
+  <h2>Artist</h2>
+   <div class="customer-logos slider mainsection">
    		<% for(int i=0; i<alist.size(); i++){ 
 							SoundTrackVO vo=alist.get(i);%>
 							
@@ -318,7 +313,7 @@ $(document).ready(function(){
 				</a>
       		</div>
       	 <%} %>
-   </section>
+   </div>
 </div>   
 <br>
 <h2>맞춤 선곡</h2>
@@ -338,7 +333,7 @@ $(document).ready(function(){
 <br>
 <div class="container">
   <h2>TOP 20</h2>
-   <section class="customer-logos slider">
+   <div class="customer-logos slider mainsection">
    		<% for(int i=0; i<top20.size(); i++){ 
    				SoundTrackVO vo=top20.get(i);%>
 							
@@ -350,7 +345,7 @@ $(document).ready(function(){
 				</a>
       		</div>
       	 <%} %>
-   </section>
+   </div>
 </div>   
 <br>
 <h2>장르별 선곡</h2>

@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mangoMusic.db.ConnectionPoolMgr;
+import com.mangoMusic.db.ConnectionPoolMgr2;
 
 public class SoundTrackDAO {
-	private ConnectionPoolMgr pool;
+	private ConnectionPoolMgr2 pool;
 
 	public SoundTrackDAO() {
-		pool= new ConnectionPoolMgr();
+		pool= new ConnectionPoolMgr2();
 	}
 
 	public List<SoundTrackVO> selectArtist() throws SQLException{

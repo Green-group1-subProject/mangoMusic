@@ -1,6 +1,5 @@
 package com.mango.board.model;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,15 +8,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mango.db.ConnectionPoolMgr;
-import com.mango.board.model.*;
+import com.mangoMusic.db.ConnectionPoolMgr2;
 
 
 public class BoardDAO {
-	private ConnectionPoolMgr pool;
+	private ConnectionPoolMgr2 pool;
 
 	public BoardDAO() {
-		pool=new ConnectionPoolMgr();
+		pool=new ConnectionPoolMgr2();
 	}
 
 	/**
@@ -148,8 +146,6 @@ public class BoardDAO {
 			rs=ps.executeQuery(); 
 			if(rs.next()) 
 			{ 
-
-				int Bno=rs.getInt("bno"); 
 				int mno=rs.getInt("mno"); 
 				String btitle=rs.getString("btitle");
 				String content=rs.getString("content"); 

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -197,8 +196,8 @@ input[type=text]{
 
 	<%@include file="../board/list.jsp" %>
 	<div class="divBtn">
-		<button id="btn2" onclick="window.open('board/write.jsp','window_name','width=1030,height=800,location=no,status=no,scrollbars=yes');">글쓰기</button>
-		<button id="btn3" onclick="window.open('board/delete.jsp','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">삭제</button>
+		<button id="btn2" onclick="window.open('../board/write.jsp','window_name','width=1030,height=800,location=no,status=no,scrollbars=yes');">글쓰기</button>
+		<button id="btn3" onclick="window.open('../board/delete.jsp','window_name','width=430,height=500,location=no,status=no,scrollbars=yes');">삭제</button>
 	</div>
     </div>
   </div>

@@ -8,6 +8,7 @@
 	request.setCharacterEncoding("utf-8");
 	String pwd=request.getParameter("pwd");
 	
+	MemberService service=new MemberService();
 	
 	try{
 		int cnt=service.deleteMem(id, pwd);

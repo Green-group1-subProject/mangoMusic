@@ -8,13 +8,13 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mangoMusic.db.ConnectionPoolMgr;
+import com.mangoMusic.db.ConnectionPoolMgr2;
 
 public class MemberDAO {
-	private ConnectionPoolMgr pool;
+	private ConnectionPoolMgr2 pool;
 
 	public MemberDAO() {
-		pool = new ConnectionPoolMgr();
+		pool = new ConnectionPoolMgr2();
 	}
 
 	// 로그인 체크 !
