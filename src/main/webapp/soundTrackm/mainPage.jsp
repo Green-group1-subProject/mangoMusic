@@ -55,10 +55,16 @@
 <!------ Include the above in your HEAD tag ---------->
 <script type="text/javascript" src="../css/bootstrap.css"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+<script type="text/javascript" src="../js/">jquery-3.6.0.min.js</script>
+
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 h2{
-  text-align:center;
+  text-align:left;
   padding: 20px;
+  font-weight: bold;
+  color: #333333;
 }
 /* Slider */
 
@@ -178,30 +184,32 @@ h2{
     display: none;
 }
 
-img{
+#mainImg{
 	width: 230px;
 	height: 230px;
-	margin-left: 10px;
+	border-radius: 5px
 }
 
 .container {
     max-width: 1540px;
+    margin-left: -5px;
 }
 
 header{
 	position: relative;
 	width: 100%;
-	height: 60px;
+	height: 70px;
 	background: #ffbc50;
 }
 #customized{
 	text-align: center;
 }
 #customized img{
-	margin-left: 40px;
+	margin-left: 20px;
 	margin-top:2px;
 	width: 50px;
 	height: 50px;
+	border-radius: 5px
 }
 #customized div{
 	height: 60px;
@@ -214,6 +222,7 @@ section#main {
 .artist3{
 	margin-top: 30px;
 	position: absolute;
+	margin-left: 15px;
 }
 .alname{
 	margin-top: 30px;
@@ -224,10 +233,36 @@ section#main {
 .musicname{
 	margin-top: 2px;
 	position: absolute;
+	margin-left: 15px;
+}
+div#genre {
+    margin-left: 10px;
+    margin-right: 20px;
+}
+.row {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+a:hover{
+	color: #5F5F5F;
 	font-weight: bold;
 }
-</style>
+#black, .musicname, .artist2{
+	font-weight: bold;
+	color: #333333;
+	font-family: 'Noto Sans KR'; 
+}
+.artist3, .alname, #gray{
+	font-weight: 600;
+	color: #5F5F5F;
+	font-family: 'Noto Sans KR';
+}
+.artist3, .alname{
+	font-size: 0.9em;
+}
 
+</style>
+</script>
 <script type="text/javascript">
 $(document).ready(function(){
     $('.customer-logos').slick({
@@ -250,12 +285,24 @@ $(document).ready(function(){
             }
         }]
     });
+    
+    $('img').hover(function(){
+        $(this).css('opacity',0.5);
+    }, function() {
+        $(this).css('opacity',1);
+    });
+    
+    $('a').hover(function(){
+        $(this).find('.alUnderline').css("text-decoration","underline");
+	}, function() {
+        $(this).find('.alUnderline').css("text-decoration","none");
+    });
+    
 });
 </script>
 </head>
 <body>
 <header>
-	<div class="left">MUSIC</div>
 </header>
 <section id="main">
 <div class="container">
@@ -266,8 +313,8 @@ $(document).ready(function(){
 							
       		<div class="slide">
       			<a href='artistPage.jsp?arno=<%=vo.getArNo() %>'>
-					<img src='../images/aimages/<%=vo.getArNo() %>.jpg'>
-					<span class='artist2'><%=vo.getArName() %></span>
+					<img src='../images/aimages/<%=vo.getArNo() %>.jpg' id="mainImg">
+					<span id="black"><%=vo.getArName() %></span>
 				</a>
       		</div>
       	 <%} %>
@@ -282,8 +329,8 @@ $(document).ready(function(){
 		<div class="col-md-4 col-sm-6">
 			<a href="playList.jsp?sno=<%=vo.getsNo() %>">
 			<img src='../images/<%=vo.getAlNo() %>.jpg'>
-			<span class='musicname'><%=vo.getTitle() %></span>
-			<span class='artist3'><%=vo.getArName() %></span><span class='alname'><%=vo.getAlName() %></span>
+			<span class='musicname alUnderline'><%=vo.getTitle() %></span>
+			<span class='artist3 alUnderline'><%=vo.getArName() %></span><span class='alname alUnderline'><%=vo.getAlName() %></span>
 			</a>
 		</div>
 		<%} %>
@@ -297,9 +344,9 @@ $(document).ready(function(){
 							
       		<div class="slide">
       			<a href="playList.jsp?sno=<%=vo.getsNo() %>">
-					<img src='../images/alimages/<%=vo.getAlNo() %>.jpg'>
-					<span class='musicname2'><%=vo.getTitle() %></span><br>
-					<span class='alname2'><%=vo.getAlName() %></span> • <span class='artist2'><%=vo.getArName() %></span>
+					<img src='../images/alimages/<%=vo.getAlNo() %>.jpg' id="mainImg">
+					<span class='artist2'><%=vo.getTitle() %></span><br>
+					<span id="gray"><%=vo.getAlName() %> • </span><span id="gray"><%=vo.getArName() %></span>
 				</a>
       		</div>
       	 <%} %>
@@ -314,9 +361,9 @@ $(document).ready(function(){
 			
 			<div class="col-lg-2 col-sm-6" id='art1'>
 				<a href='genrePage.jsp?geno=<%=vo.getGeNo() %>'>
-				<img src='../images/gimages/<%=vo.getGeNo() %>.png'>
+				<img src='../images/gimages/<%=vo.getGeNo() %>.png' id="mainImg">
 				<div>
-				<span class='artist2'><%=vo.getGeName() %></span>&nbsp;&nbsp;
+				<span id="black"><%=vo.getGeName() %></span>&nbsp;&nbsp;
 				</div>
 				</a>
 			</div>

@@ -17,11 +17,9 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   background-color: #fff;
 }
-
 .player {
  top: 93.8vh;
  position: relative;
@@ -31,16 +29,13 @@ body {
  overflow: hidden;
  background-color: #ffbc50;
 }
-
 .icons {
   color: #ffffff;
 }
-
 .trackDetails {
   text-align: center;
   border-radius: 4px;
 }
-
 .title,
 .artist {
   -moz-user-select: none;
@@ -51,22 +46,18 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .title {
   font-size: 14px;
   font-weight: bold;
   color: #333333;
 }
-
 .artist {
   font-size: 12px;
   color: #999999;
 }
-
 .trackDetails {
     float: left;
 }
-
 .playlistIcon,
 .volumeIcon {
   position: absolute;
@@ -74,19 +65,16 @@ body {
   cursor: pointer;
   width: 32px;
 }
-
 .volumeIcon {
   bottom: 6px;
   display: block;
 }
-
 .controls {
   cursor: pointer;
   height: 40px;
   width: 120px;
   margin: 0 auto;
 }
-
 .controls .play,
 .controls .pause,
 .controls .rew,
@@ -97,30 +85,24 @@ body {
   line-height: 40px;
   text-align: center;
 }
-
 .controls .play,
 .controls .pause,
 .plIcon,
 .volumeIcon {
   font-size: 1em;
 }
-
 .controls .pause {
   display: none;
 }
-
 .hidden {
   display: none;
 }
-
 .controls .visible {
   display: block;
 }
-
 .tracker span { 
     display: none !important;
 }
-
 .ui-slider .ui-slider-handle {
   display: block;
   height: 14px;
@@ -129,7 +111,6 @@ body {
   -webkit-transition: all ease-in-out .3s;
   transition: all ease-in-out .3s;
 }
-
 .tracker .ui-slider-range {
   background: #000;
   -webkit-transition: all ease-in-out .3s;
@@ -137,17 +118,14 @@ body {
   height: 100%;
   top: 0;
 }
-
 .volume .ui-slider-range {
   background: #333333;
   -webkit-transition: all ease-in-out .3s;
   transition: all ease-in-out .3s;
 }
-
 .volume.ui-widget-content {
   background: #00dbde;
 }
-
 .ui-slider-handle {
   cursor: pointer;
   height: 10px;
@@ -156,7 +134,6 @@ body {
   width: 10px;
   z-index: 2;
 }
-
 .volume {
   display: none;
   right: 12px;
@@ -166,7 +143,6 @@ body {
   width: 20px;
   box-shadow: 0px 0px 10px #000;
 }
-
 .volume .ui-slider-handle {
   display: none;
 }
@@ -186,7 +162,6 @@ body {
     max-width: 200px;
     margin: 0 auto;
 }
-
 .playlist li {
   color: #000;
   cursor: pointer;
@@ -195,20 +170,16 @@ body {
   -webkit-transition: all ease-in-out .1s;
   transition: all ease-in-out .1s;
 }
-
 .playlist li:hover {
   background: #ccc;
 }
-
 .playlist li.active {
   font-weight: bold;
   background: #ccc;
 }
-
 .show {
   display: block;
 }
-
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default,
@@ -217,7 +188,6 @@ html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
   border: 0;
 }
-
 .cr {
   color: #f9f9f9;
   text-align: center;
@@ -227,85 +197,63 @@ html .ui-button.ui-state-disabled:active {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-
 	  var song;
 	  var tracker = $('.tracker');
-
 	  function initAudio(elem) {
 	    var url = elem.attr('audiourl');
-
 	    var title = elem.text();
 	    var artist = elem.attr('artist');
-
 	    $('.player .title').text(title);
 	    $('.player .artist').text(artist);
-
 	    // song = new Audio('media/'+url);
 	    song = new Audio(url);
-
 	    // timeupdate event listener
 	    song.addEventListener('timeupdate', function() {
 	      var curtime = parseInt(song.currentTime, 10);
 	      tracker.slider('value', curtime);
 	    });
-
 	    $('.playlist li').removeClass('active');
 	    elem.addClass('active');
 	  }
-
 	  function playAudio() {
 	    song.play();
-
 	    tracker.slider("option", "max", song.duration);
-
 	    $('.play').addClass('hidden');
 	    $('.pause').addClass('visible');
 	  }
-
 	  function stopAudio() {
 	    song.pause();
-
 	    $('.play').removeClass('hidden');
 	    $('.pause').removeClass('visible');
 	  }
-
 	  // play click
 	  $('.play').click(function(e) {
 	    e.preventDefault();
 	    // playAudio();
-
 	    song.addEventListener('ended', function() {
 	      var next = $('.playlist li.active').next();
 	      if (next.length == 0) {
 	        next = $('.playlist li:first-child');
 	      }
 	      initAudio(next);
-
 	      song.addEventListener('loadedmetadata', function() {
 	        playAudio();
 	      });
-
 	    }, false);
-
 	    tracker.slider("option", "max", song.duration);
 	    song.play();
 	    $('.play').addClass('hidden');
 	    $('.pause').addClass('visible');
-
 	  });
-
 	  // pause click
 	  $('.pause').click(function(e) {
 	    e.preventDefault();
 	    stopAudio();
 	  });
-
 	  // next track
 	  $('.fwd').click(function(e) {
 	    e.preventDefault();
-
 	    stopAudio();
-
 	    var next = $('.playlist li.active').next();
 	    if (next.length === 0) {
 	      next = $('.playlist li:first-child');
@@ -315,46 +263,34 @@ $(document).ready(function() {
 	      playAudio();
 	    });
 	  });
-
 	  // prev track
 	  $('.rew').click(function(e) {
 	    e.preventDefault();
-
 	    stopAudio();
-
 	    var prev = $('.playlist li.active').prev();
 	    if (prev.length === 0) {
 	      prev = $('.playlist li:last-child');
 	    }
 	    initAudio(prev);
-
 	    song.addEventListener('loadedmetadata', function() {
 	      playAudio();
 	    });
 	  });
-
 	  // show playlist
 	  $('.playlistIcon').click(function(e) {
 	    e.preventDefault();
 	    $('.playlist').toggleClass('show');
 	  });
-
 	  // playlist elements - click
 	  $('.playlist li').click(function() {
 	    stopAudio();
 	    initAudio($(this));
 	  });
-
 	  // initialization - first element in playlist
 	  initAudio($('.playlist li:first-child'));
-
-
-
 	 
-
 	  // empty tracker slider
 	  tracker.slider({
-
 	    range: 'min',
 	    min: 0,
 	    max: 10,
@@ -403,4 +339,3 @@ $(document).ready(function() {
 			        </div>
      		</div>
  		</nav>
-

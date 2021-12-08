@@ -10,7 +10,7 @@ public class SoundTrackService {
 		soundTrackDao=new SoundTrackDAO();
 	}
 	
-	public List<SoundTrackVO> selectArtistTOP() throws SQLException{
-		return soundTrackDao.selectArtistTOP();
+	public List<SoundTrackVO> selectArTOP(int arno) throws SQLException{
+		return soundTrackDao.selectArTOP(arno);
 	}
 }

@@ -11,41 +11,31 @@ import com.mangoMusic.db.ConnectionPoolMgr;
 
 public class SoundTrackDAO {
 	private ConnectionPoolMgr pool;
-	
+
 	public SoundTrackDAO() {
 		pool= new ConnectionPoolMgr();
 	}
-	
-	public List<SoundTrackVO> selectArtistTOP() throws SQLException{
+
+	public List<SoundTrackVO> selectArtist() throws SQLException{
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+
 		List<SoundTrackVO> list= new ArrayList<SoundTrackVO>();
-		
+
 		try {
 			con=pool.getConnection();
-			String sql="select c.arno arno, d.arname arname\r\n"
-					+ "from \r\n"
-					+ "(\r\n"
-					+ "select a.arno arno, sum(b.listencount) listencount\r\n"
-					+ "from artist a join soundtrack b\r\n"
-					+ "on a.arno = b.arno\r\n"
-					+ "GROUP BY a.arno\r\n"
-					+ "order by listencount desc\r\n"
-					+ ")c join artist d\r\n"
-					+ "on c.arno=d.arno\r\n"
-					+ "where rownum<7";
+			String sql="select * from artist";
 			ps=con.prepareStatement(sql);
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				int arno=rs.getInt(1);
 				String arname=rs.getString(2);
-				
+
 				SoundTrackVO vo = new SoundTrackVO();
 				vo.setArNo(arno);
 				vo.setArName(arname);
-				
+
 				list.add(vo);
 			}
 			System.out.println("메인 top6 artist 결과 ="+list.size());
@@ -59,47 +49,47 @@ public class SoundTrackDAO {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+
 		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
 		try {
 			con=pool.getConnection();
 			String sql="select * from genre";
 			ps=con.prepareStatement(sql);
-			
+
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				int geNo=rs.getInt("geno");
 				String geName=rs.getString("gename");
-				
+
 				SoundTrackVO vo = new SoundTrackVO();
 				vo.setGeNo(geNo);
 				vo.setGeName(geName);
-				
+
 				list.add(vo);
 			}
 			return list;
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
-		
+
 	}
-	
+
 	public String selectArName(int arno) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+
 		String arName=null;
 		try {
 			con=pool.getConnection();
 			String sql="select arname from artist where arno=?";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, arno);
-			
+
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				arName=rs.getString("arname");
-				
+
 			}
 			System.out.println("arname="+arName);
 			return arName;
@@ -107,17 +97,17 @@ public class SoundTrackDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
-	
+
 	public List<SoundTrackVO> selectArTOP(int arno) throws SQLException{
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+
 		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
 		try {
 			con=pool.getConnection();
-			
-			String sql="select title, (select arname from artist b where b.arno=a.arno) arname,\r\n"
+
+			String sql="select sno, title, alno, (select arname from artist b where b.arno=a.arno) arname,\r\n"
 					+ "(select alname from album c where c.alno=a.alno) alname\r\n"
 					+ "from(select * from soundTrack\r\n"
 					+ "where arno=?\r\n"
@@ -125,36 +115,40 @@ public class SoundTrackDAO {
 					+ "where rownum<7";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, arno);
-			
+
 			rs=ps.executeQuery();
 			while(rs.next()) {
+				int sNo=rs.getInt("sno");
 				String title=rs.getString("title");
+				int alNo=rs.getInt("alno");
 				String arName=rs.getString("arName");
 				String alName=rs.getString("alName");
-				
+
 				SoundTrackVO vo = new SoundTrackVO();
+				vo.setsNo(sNo);
 				vo.setTitle(title);
+				vo.setAlNo(alNo);
 				vo.setArName(arName);
 				vo.setAlName(alName);
-				
+
 				list.add(vo);
 			}
 			System.out.println("list="+list.size());
 			return list;
 		}finally {
-			
+
 		}
 	}
-	
+
 	public List<SoundTrackVO> selectArAl(int arno) throws SQLException{
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+
 		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
 		try {
 			con=pool.getConnection();
-		
+
 			String sql="select a.alno alno, b.alname alname, reldate\r\n"
 					+ "from\r\n"
 					+ "(select DISTINCT alno from soundtrack  \r\n"
@@ -179,88 +173,293 @@ public class SoundTrackDAO {
 			pool.dbClose(rs, ps, con);
 		}
 	}
-	
+
 	public SoundTrackVO albumByNo(int alno) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+
 		SoundTrackVO vo=new SoundTrackVO();
 		try {
 			con=pool.getConnection();
-			
+
 			String sql="select * from album where alno=?";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, alno);
-			
+
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				String alName=rs.getString("alName");
 				int reldate=rs.getInt("reldate");
-				
+
 				vo.setAlNo(alno);
 				vo.setAlName(alName);
 				vo.setRelDate(reldate);
 			}
 			System.out.println("앨범조회 결과 vo="+vo+", 매개변수 no="+alno);
-			
+
 			return vo;
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
 	}
-	
+	//가수별 엘범리스트
 	public List<SoundTrackVO> albumList(int alno) throws SQLException{
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		
+
 		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
 		try {
 			con=pool.getConnection();
-			
+
 			String sql="select title from soundtrack where alno=?";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, alno);
-			
+
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				String title=rs.getString("title");
-				
+
 				SoundTrackVO vo=new SoundTrackVO();
-				
+
 				vo.setTitle(title);
 				list.add(vo);
 			}
 			System.out.println("앨범 조회 결과, list.size="+list.size());
-			
+
 			return list;
 		}finally {
 			pool.dbClose(rs, ps, con);
 		}
 	}
+	//가수별 청취수순
+	public List<SoundTrackVO> selectSongAll(int arno) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
+		try {
+			con=pool.getConnection();
+			String sql="select sno, alno, title, (select arname from artist b where b.arno=a.arno) arname,\r\n"
+					+ "(select alname from album c where c.alno=a.alno) alname\r\n"
+					+ "from(select * from soundtrack\r\n"
+					+ "where arno= ?\r\n"
+					+ "order by listencount desc) a";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, arno);
+
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				int sNo=rs.getInt("sno");
+				int alNo=rs.getInt("alno");
+				String title=rs.getString("title");
+				String arName=rs.getString("arname");
+				String alName=rs.getString("alname");
+				SoundTrackVO vo=new SoundTrackVO();
+				vo.setsNo(sNo);
+				vo.setAlNo(alNo);
+				vo.setTitle(title);
+				vo.setArName(arName);
+				vo.setAlName(alName);
+
+				list.add(vo);
+			}
+			System.out.println("list.size="+list.size());
+			return list;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+
+	public List<SoundTrackVO> selectTop20() throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+
+		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
+		try {
+			con=pool.getConnection();
+			String sql="select sno, alno, title, arname, alname\r\n"
+					+ "from(\r\n"
+					+ "select sno, alno, title, (select arname from artist b where b.arno=a.arno) arname,\r\n"
+					+ "(select alname from album c where c.alno=a.alno) alname\r\n"
+					+ "from soundtrack a\r\n"
+					+ "order by listencount desc\r\n"
+					+ ")\r\n"
+					+ "where rownum<21";
+			ps=con.prepareStatement(sql);
+
+			rs=ps.executeQuery();
+			while(rs.next()){
+				int sNo=rs.getInt("sno");
+				int alNo=rs.getInt("alno");
+				String title=rs.getString("title");
+				String arName=rs.getString("arname");
+				String alName=rs.getString("alname");
+
+				SoundTrackVO vo= new SoundTrackVO();
+
+				vo.setsNo(sNo);
+				vo.setAlNo(alNo);
+				vo.setTitle(title);
+				vo.setArName(arName);
+				vo.setAlName(alName);
+				list.add(vo);
+			}
+			System.out.println("list.size"+list.size());
+			return list;
+		}finally {
+
+		}
+	}
+
+	public List<SoundTrackVO> select12() throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+
+		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
+		try {
+			con=pool.getConnection();
+			String sql="select sno,alno,title,arname,alname\r\n"
+					+ "from (\r\n"
+					+ "select sno,alno, title, (select arname from artist b where b.arno=a.arno) arname,\r\n"
+					+ "(select alname from album c where c.alno=a.alno) alname\r\n"
+					+ "from soundtrack a\r\n"
+					+ "where geno=6\r\n"
+					+ "order by DBMS_RANDOM.RANDOM)\r\n"
+					+ "where rownum<13";
+			ps=con.prepareStatement(sql);
+
+			rs=ps.executeQuery();
+			while(rs.next()){
+				int sNo=rs.getInt("sno");
+				int alNo=rs.getInt("alno");
+				String title=rs.getString("title");
+				String arName=rs.getString("arname");
+				String alName=rs.getString("alname");
+
+				SoundTrackVO vo= new SoundTrackVO();
+
+				vo.setsNo(sNo);
+				vo.setAlNo(alNo);
+				vo.setTitle(title);
+				vo.setArName(arName);
+				vo.setAlName(alName);
+				list.add(vo);
+			}
+			System.out.println("list.size"+list.size());
+			return list;
+		}finally {
+
+		}
+	}
+
+	public SoundTrackVO genreByNo(int geno) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+
+		SoundTrackVO vo=new SoundTrackVO();
+		try {
+			con=pool.getConnection();
+
+			String sql="select gename from genre where geno=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, geno);
+
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				String gename=rs.getString("geName");
+
+				vo.setGeName(gename);
+			}
+			System.out.println("장르조회 결과 vo="+vo+", 매개변수 geno="+geno);
+
+			return vo;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+
+	public List<SoundTrackVO> genreList(int geno) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+
+		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
+		try {
+			con=pool.getConnection();
+
+			String sql="select sno, alno, title, (select arname from artist c where c.arno=a.arno) arname,\r\n"
+					+ "(select alname from album b where b.alno=a.alno) alname \r\n"
+					+ "from soundtrack a \r\n"
+					+ "where geno=? \r\n"
+					+ "order by dbms_random.random()";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, geno);
+
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				int sNo=rs.getInt("sno");
+				int alNo=rs.getInt("alno");
+				String title=rs.getString("title");
+				String arName=rs.getString("arname");
+
+				SoundTrackVO vo= new SoundTrackVO();
+				vo.setsNo(sNo);
+				vo.setAlNo(alNo);
+				vo.setTitle(title);
+				vo.setArName(arName);
+
+				list.add(vo);
+			}
+			System.out.println("장르앨범별 조회 결과 list.size="+list.size());
+			return list;
+
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+
+	public List<SoundTrackVO> selectBySNo(String[] sno) throws SQLException{
+		List<SoundTrackVO> list=new ArrayList<SoundTrackVO>();
+		for(int i=0;i<sno.length;i++) {
+			Connection con=null;
+			PreparedStatement ps=null;
+			ResultSet rs=null;
+			try {
+				con=pool.getConnection();
+
+				String sql="select sno, alno, title, (select arname from artist b where a.arno=b.arno) arname,\r\n"
+						+ "(select alname from album c where a.alno=c.alno) alname\r\n"
+						+ "from soundtrack a\r\n"
+						+ "where sno=?";
+				ps=con.prepareStatement(sql);
+				ps.setString(1, sno[i]);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					int sNo=rs.getInt("sno");
+					int alNo=rs.getInt("alno");
+					String title=rs.getString("title");
+					String arName=rs.getString("arname");
+					String alName=rs.getString("alname");
+
+					SoundTrackVO vo= new SoundTrackVO();
+					vo.setsNo(sNo);
+					vo.setAlNo(alNo);
+					vo.setTitle(title);
+					vo.setArName(arName);
+					vo.setAlName(alName);
+
+					list.add(vo);
+				}
+				System.out.println("playList 조회 결과 list.size="+list.size());
+			}finally {
+				pool.dbClose(rs, ps, con);
+			}
+		}
+		return list;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
