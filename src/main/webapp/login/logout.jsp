@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	lalala
+<%
+	session.invalidate();
+%>
+
+<script>
+	alert('로그아웃되었습니다.');
+	location.href="../inc/top.jsp";
+</script>
 </body>
 </html>

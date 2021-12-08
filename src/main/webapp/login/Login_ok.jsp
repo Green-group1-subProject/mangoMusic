@@ -29,7 +29,8 @@ scope ="session"></jsp:useBean>
 			session.setAttribute("name", vo.getName());
 			
 			msg = vo.getName()+"님 환영합니다";
-			url ="../index.jsp";// Main페이지 jsp
+			url ="../inc/top.jsp";
+			// Main페이지 jsp *************테스트임 수정해야함
 		}else if(result ==MemberService.DISAGREE_PWD){
 			msg ="비밀번호가 일치하지 않습니다";
 		}else if (result == MemberService.USERID_NONE ){
