@@ -34,7 +34,7 @@
 	              <li><span class="fa-li"><i class="fas fa-check"></i></span>월 100회 듣기</li>
 	            </ul>
 	            <div class="d-grid">
-	              <a href="#" class="btn btn-mango text-uppercase">선택</a>
+	              <a href="joinMembership_ok.jsp?membership=standard" class="btn btn-mango text-uppercase">선택</a>
 	            </div>
 	          </div>
 	        </div>
@@ -51,7 +51,7 @@
 	              <li><span class="fa-li"><i class="fas fa-check"></i></span>AI(같은 1조 조장의) 음악추천</li>
 	            </ul>
 	            <div class="d-grid">
-	              <a href="#" class="btn btn-mango text-uppercase">선택</a>
+	              <a href="joinMembership_ok.jsp?membership=premium" class="btn btn-mango text-uppercase">선택</a>
 	            </div>
 	          </div>
 	        </div>

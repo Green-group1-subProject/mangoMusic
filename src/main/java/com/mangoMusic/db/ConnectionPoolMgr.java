@@ -28,14 +28,14 @@ public class ConnectionPoolMgr {
 	
 	public Connection getConnection(String uid, String upwd)
 			throws SQLException {
-		String url="jdbc:oracle:thin:@DESKTOP-NUTM8UL:1521:xe";
+		String url="jdbc:oracle:thin:@DESKTOP-9DNB5IC:1521:xe";
 		Connection con=getConnection(url, uid, upwd);
 		return con;
 	}
 	
 	public Connection getConnection()
 			throws SQLException {
-		String url="jdbc:oracle:thin:@DESKTOP-NUTM8UL:1521:xe";
+		String url="jdbc:oracle:thin:@DESKTOP-9DNB5IC:1521:xe";
 		String uid="herb", upwd="herb123";
 		Connection con=getConnection(url, uid, upwd);
 		return con;

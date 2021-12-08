@@ -10,53 +10,46 @@
 	$(function(){
 		$('#AllAgree').click(function(){
 			$('.'+this.id).prop('checked',this.checked);
-			$('input[type="submit"]').css({
+			$('#div6 button').css({
 				"background-color":'#ffbc50',
 				color:"#ffffff"
 			});
 			if(!$('#AllAgree').is(':checked')){
-				$('input[type="submit"]').css({
+				$('#div6 button').css({
 					"background-color":'#999999',
 					color:"#333333"
 				});
 			}
 		});
 		
-		$('input[type=submit]').click(function(){
+		$('#div6 button').click(function(){
 			if(!$('#S-Agree').is(":checked")){
 				alert('필수 동의 체크를 해주세요');
 				$('#S-Agree').focus();
+				event.preventDefault();
 				return false();
 			}
 			if(!$('#div3 input[type=checkbox]').is(":checked")){
 				alert('필수 동의 체크를 해주세요');
 				$('#div3 input[type=checkbox]').focus();
+				event.preventDefault();
 				return false();
 			}
 		});
 		
-		$('#Agree-detail1').click(function(){
-			open('Agreement_detail.jsp','zip',
-					'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
-		});
-		
-		$('#Agree-detail2').click(function(){
-			open('Agreement_detail2.jsp','zip',
-					'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
-		});
-		
+	
 		$('#S-Agree').change(function(){
 			if($(this).is(':checked')){
 				$('#info-Agree').change(function(){
 					if($(this).is(':checked')){
-						$('input[type="submit"]').css({
+						$('#div6 button').css({
 							"background-color":'#ffbc50',
 							color:"#ffffff"
 						});
 					}
 				});
 			}else{
-				$('input[type="submit"]').css({
+				$('#div6 button').css({
 					"background-color":'#999999',
 					color:"#333333"
 				});
@@ -78,9 +71,71 @@
 					'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
 		});
 		
+		$('#Agree-detail1').click(function(){
+			open('Agreement_detail.jsp','zip',
+			'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+		});
 		
-		
+		$('#Agree-detail2').click(function(){
+			open('Agreement_detail2.jsp','zip',
+			'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+		});
 	});
+	
+	 function openPop(){
+		 if(!$('#S-Agree').is(":checked")){
+				alert('필수 동의 체크를 해주세요');
+				$('#S-Agree').focus();
+				event.preventDefault();
+				return false();
+			}
+			if(!$('#div3 input[type=checkbox]').is(":checked")){
+				alert('필수 동의 체크를 해주세요');
+				$('#div3 input[type=checkbox]').focus();
+				event.preventDefault();
+				return false();
+			}
+			
+	        var pop_title = "popupOpener" ;
+	         
+	        window.open("", pop_title) ;
+	         
+	        var frmData = document.frmData ;
+	        frmData.target = pop_title ;
+	        frmData.action = "CreateAnAccount.jsp" ;
+	         
+	        frmData.submit() ;
+	    }
+	 
+	 function openPop2(){
+		 if(!$('#S-Agree').is(":checked")){
+				alert('필수 동의 체크를 해주세요');
+				$('#S-Agree').focus();
+				event.preventDefault();
+				return false();
+			}
+			if(!$('#div3 input[type=checkbox]').is(":checked")){
+				alert('필수 동의 체크를 해주세요');
+				$('#div3 input[type=checkbox]').focus();
+				event.preventDefault();
+				return false();
+			}
+			
+	        var pop_title = "popupOpener" ;
+	         
+	        window.open("", pop_title) ;
+	         
+	        var frmData = document.frmData ;
+	        frmData.target = pop_title ;
+	        frmData.action = "14Agreement_detail.jsp" ;
+	         
+	        frmData.submit() ;
+	    }
+
+
+
+	
+
 	
 	
 		
@@ -90,7 +145,7 @@
 <body>
 <h1>약관동의</h1>
 <section class ="Agree-form">
-<form action="CreateAnAccount.jsp">
+<form name ="frmData" id ="frmData" method ="post">
 	<div id="div1">
 	<input type ="checkbox" id ="AllAgree" onclick="AllAgree(this.id,this.checked);">
 	<label for ="AllAgree">모두 동의합니다</label><br>
@@ -100,13 +155,14 @@
 	<input type ="checkbox" id ="S-Agree" class="AllAgree">
 	<b id ="b2">[필수]</b>
 	<label for ="S-Agree" onclick="S-Agree">서비스 이용약관 동의</label>
-	<button id="Agree-detail1">></button>
+	<button id="Agree-detail1" onclick ="window.open('Agreement_detail.jsp','zip',
+	'width=500,height=500,left=0,top=0,location=yes,resizable=yes')">></button>
 	</div>
 	<div id="div3">
 	<input type ="checkbox" id ="info-Agree" class="AllAgree" >
 	<b id ="b2">[필수]</b>
 	<label for ="info-Agree">개인정보 수집/이용 동의</label>
-	<button id="Agree-detail2">></button>
+	<button id="Agree-detail2" onclick ="Agree-detail2()">></button>
 	</div>
 	<div id="div4">
 	<input type ="checkbox" id ="info-Agree" class="AllAgree">
@@ -120,11 +176,11 @@
 	<b id="b1">주요 공지사항 및 결제 관련 정보일 경우 정보 수신 동의 여부에</b><br>
 	<b id="b1">관계없이 발송됩니다</b>
 	</div>
-	<div id ="div6">
-	<input type ="submit" value="14세 미만 회원가입" onclick="c_account1">
-	<input type ="submit" value="일반 회원가입" onclick ="c_account2">
-	</div>
 </form>
+	<div id ="div6">
+	<button id="account1" onclick = "openPop2()">14세 미만 회원가입</button>
+	<button id="account2" onclick = "openPop()">일반 회원가입</button>
+	</div>
 </section><br>
 
 <footer>

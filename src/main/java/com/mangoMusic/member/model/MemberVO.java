@@ -16,8 +16,6 @@ public class MemberVO {
 	private Timestamp outdate;
 	
 	public MemberVO() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public MemberVO(int mNo, String id, String pwd, String name, String email, String membership, String tel,
