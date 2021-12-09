@@ -7,13 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mangoMusic.db.ConnectionPoolMgr2;
+import com.mangoMusic.db.ConnectionPoolMgr;
+
 
 public class SoundTrackDAO {
-	private ConnectionPoolMgr2 pool;
+	private ConnectionPoolMgr pool;
 
 	public SoundTrackDAO() {
-		pool= new ConnectionPoolMgr2();
+		pool= new ConnectionPoolMgr();
 	}
 
 	public List<SoundTrackVO> selectArtist() throws SQLException{
@@ -213,17 +214,19 @@ public class SoundTrackDAO {
 		try {
 			con=pool.getConnection();
 
-			String sql="select title from soundtrack where alno=?";
+			String sql="select title, sno from soundtrack where alno=?";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, alno);
 
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				String title=rs.getString("title");
-
+				int sNo=rs.getInt("sno");
 				SoundTrackVO vo=new SoundTrackVO();
-
+				
 				vo.setTitle(title);
+				vo.setsNo(sNo);
+				
 				list.add(vo);
 			}
 			System.out.println("앨범 조회 결과, list.size="+list.size());
@@ -406,12 +409,14 @@ public class SoundTrackDAO {
 				int alNo=rs.getInt("alno");
 				String title=rs.getString("title");
 				String arName=rs.getString("arname");
+				String alName=rs.getString("alname");
 
 				SoundTrackVO vo= new SoundTrackVO();
 				vo.setsNo(sNo);
 				vo.setAlNo(alNo);
 				vo.setTitle(title);
 				vo.setArName(arName);
+				vo.setAlName(alName);
 
 				list.add(vo);
 			}
@@ -462,4 +467,61 @@ public class SoundTrackDAO {
 		}
 		return list;
 	}
+
+	public String getPL(int mNo) throws SQLException{
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		try {
+			con=pool.getConnection();
+
+			String sql="select ltitle from playlist"
+					+ " where mno=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, mNo);
+
+			rs=ps.executeQuery();
+			String ltitle="";
+			if(rs.next()) {
+				ltitle=rs.getString("ltitle");
+			}
+			System.out.println("유저 playList 조회 결과 ltitle="+ltitle);
+
+			return ltitle;
+		}finally {
+			pool.dbClose(rs, ps, con);
+		}
+	}
+
+	public int addMusic(int mNo, String addMusic) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+
+		addMusic+="/";
+
+		try {
+			con=pool.getConnection();
+
+			String sql="update playlist"
+					+ " set ltitle=?||ltitle"
+					+ " where mno=?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, addMusic);
+			ps.setInt(2, mNo);
+
+			int cnt=ps.executeUpdate();
+
+			if(cnt>0) {
+				System.out.println("플레이리스트 음악추가 성공");
+			}else {
+				System.out.println("플레이리스트 음악추가 실패");
+			}
+
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
+
+
 }

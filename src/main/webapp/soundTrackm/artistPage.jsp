@@ -4,6 +4,7 @@
 <%@page import="com.mangoMusic.soundtrack.model.SoundTrackDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../inc/top.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -239,7 +240,7 @@ a:hover #iconImg{
 		<a href="musicAll.jsp?arno=<%=arno %>" id="MList">전체보기</a></div><br><br>
 	</div>	
 	<div id="album">
-		<span class="pagetitle">앨범</span><a href="albumList.jsp" id="aList">모두보기</a><br>
+		<span class="pagetitle">앨범</span><br>
 		<div class='row' id='artist'>
 			<% for(int i=0; i<alList.size(); i++){ 
 					SoundTrackVO vo=alList.get(i);

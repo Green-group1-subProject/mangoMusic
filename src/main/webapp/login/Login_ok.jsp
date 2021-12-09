@@ -27,6 +27,9 @@ scope ="session"></jsp:useBean>
 			
 			session.setAttribute("id", id);
 			session.setAttribute("name", vo.getName());
+			session.setAttribute("mNo", vo.getmNo());
+			System.out.println(vo.getId());
+			System.out.println(vo.getmNo());
 			
 			msg = vo.getName()+"님 환영합니다";
 			url ="../soundTrackm/index.jsp";

@@ -4,6 +4,7 @@
 <%@page import="com.mangoMusic.soundtrack.model.SoundTrackDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../inc/top.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,7 +188,7 @@
 			<div class="boss">
 		<%	for(int i=0; i<list.size(); i++){ 
 					SoundTrackVO vo2=list.get(i);%>
-					<a href="playList.jsp?sno=<%=vo.getsNo() %>">
+					<a href="playList.jsp?sno=<%=vo2.getsNo() %>">
 						<div class="row">
 							<div id="bottomImg">
 								<img src="../images/<%=vo2.getAlNo() %>.jpg" alt="albumImg" id="alImg"

@@ -8,13 +8,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mangoMusic.db.ConnectionPoolMgr2;
+import com.mangoMusic.db.ConnectionPoolMgr;
+
 
 public class MemberDAO {
-	private ConnectionPoolMgr2 pool;
+	private ConnectionPoolMgr pool;
 
 	public MemberDAO() {
-		pool = new ConnectionPoolMgr2();
+		pool = new ConnectionPoolMgr();
 	}
 
 	// 로그인 체크 !
@@ -78,7 +79,8 @@ public class MemberDAO {
 				Timestamp outdate = rs.getTimestamp("outdate");
 				String membership = rs.getString("membership");
 				int playCount = rs.getInt("playCount");
-
+				
+				vo.setId(id);
 				vo.setPwd(pwd);
 				vo.setmNo(Mno);
 				vo.setName(name);
@@ -362,6 +364,32 @@ public class MemberDAO {
 					System.out.println("멤버십 겟 실패");
 				} 	*/
 
+			return cnt;
+		}finally {
+			pool.dbClose(ps, con);
+		}
+	}
+	
+	public int createPL(int mno) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+
+		try {
+			con=pool.getConnection();
+
+			String sql="insert into playlist(lno,mno,ltitle)\r\n"
+					+ " values(playlist_seq.nextval,?,'')";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, mno);
+			
+			int cnt=ps.executeUpdate();
+			if(cnt>0) {
+				System.out.println("플레이리스트 만들기 성공");
+			}else {
+				System.out.println("플레이리스트 만들기 실패");
+				
+			}
+			
 			return cnt;
 		}finally {
 			pool.dbClose(ps, con);

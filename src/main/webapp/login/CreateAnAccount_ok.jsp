@@ -39,6 +39,13 @@
 	
 	try{
 		int cnt=service.insertMem(vo);
+		System.out.println("계정만듦");
+		MemberVO vo2=service.selectById(id);
+		System.out.println("mNo:"+vo2.getmNo());
+		int cnt2=service.createPL(vo2.getmNo());
+		System.out.println("플리만듦");
+		
+		
 	if(cnt>0){ %>
 		<script type="text/javascript">
 			alert('회원가입되었습니다.');

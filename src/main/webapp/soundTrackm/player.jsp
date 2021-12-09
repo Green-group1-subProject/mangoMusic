@@ -404,20 +404,27 @@ $(document).ready(function() {
 <%
 
 	//플레이 리스트가 널이아니면(로그인되면 메인페이지로 이동후 해당 계정의 번호로 playList컬럼의 스트링을 가져옴)
-	String pList="1/2/3/4/5/24";//사용자의 플레이리스트
-
-	
-	
-    String[] pListArr = pList.split("/");
 	SoundTrackDAO dao= new SoundTrackDAO();
+	
+	int	mNo=0;
+	String ltitle="";
+	try{
+		mNo=(int)session.getAttribute("mNo");
+		ltitle=dao.getPL(mNo);
+	}catch(SQLException e){
+		e.printStackTrace();
+	}catch(NullPointerException e){
+		e.printStackTrace();
+	}
+	
+	String pList=ltitle;//사용자의 플레이리스트
+    String[] pListArr = pList.split("/");
 	List<SoundTrackVO> list=null;
 	try{
 		list=dao.selectBySNo(pListArr);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
-	
-	
 	
 %>
 <body  style="overflow:hidden;">
@@ -470,7 +477,7 @@ $(document).ready(function() {
 	%>
   <li audioURL="../music/<%=vo.getsNo() %>.mp3" artist="<%=vo.getArName() %>"><%=vo.getTitle() %></li>
   <%=vo.getAlNo()%>
-<%} %>
+<%}%>
 </ul>
 <!-- <h1>ㅎㅎㅎ</h1> -->
 </body>

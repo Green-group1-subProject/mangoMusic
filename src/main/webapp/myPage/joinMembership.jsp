@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp" %>
+<link href="../css/styles.css" rel="stylesheet" />
 <div class="row" style="margin-top:103px">
 	<div class="col-2"><h2 style="text-align: center;">마이페이지</h2></div>
 	<div class="col-3"></div><!-- 그리드 2칸 여백처리(중앙정렬용) -->

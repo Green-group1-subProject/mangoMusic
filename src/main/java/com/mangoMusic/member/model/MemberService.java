@@ -59,5 +59,9 @@ public class MemberService {
 	public int checkId(String id) throws SQLException {
 		return memberDao.checkId(id);
 	}
+	
+	public int createPL(int mno) throws SQLException {
+		return memberDao.createPL(mno);
+	}
 
 }

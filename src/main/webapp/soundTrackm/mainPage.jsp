@@ -59,6 +59,11 @@
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+header{
+   position: relative;
+   width: 100%;
+   height: 70px;
+}
 
 h2{
   text-align:left;
@@ -190,7 +195,7 @@ h2{
 	border-radius: 5px
 }
 
-.container {
+.container.photos{
     max-width: 1540px;
     margin-left: -5px;
 }
@@ -299,8 +304,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+<header>
+</header>
 <section id="main">
-<div class="container">
+<div class="container photos">
   <h2>Artist</h2>
    <div class="customer-logos slider mainsection">
    		<% for(int i=0; i<alist.size(); i++){ 
@@ -331,7 +338,7 @@ $(document).ready(function(){
 		<%} %>
 	</div>
 <br>
-<div class="container">
+<div class="container photos">
   <h2>TOP 20</h2>
    <div class="customer-logos slider mainsection">
    		<% for(int i=0; i<top20.size(); i++){ 
