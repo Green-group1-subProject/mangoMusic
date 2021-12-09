@@ -24,7 +24,7 @@
 	<section class="pricing py-5">
 	  <div class="container">
 	    <div class="row">
-	      <!-- Free Tier -->
+	      <!-- 스탠다드 Tier -->
 	      <div class="col-lg-4">
 	        <div class="card mb-5 mb-lg-0">
 	          <div class="card-body">
@@ -33,6 +33,8 @@
 	            <hr>
 	            <ul class="fa-ul">
 	              <li><span class="fa-li"><i class="fas fa-check"></i></span>월 100회 듣기</li>
+	              <li><span class="fa-li"><i class="fas fa-check"></i></span>속기사 강동한과 함께하는 1:1 타자배틀 (대결권) </li>
+	              <li><span class="fa-li"><i class="fas fa-check"></i></span>김회중과 함께하는 배틀그라운드 '입벌려라 치킨들어간다' (치킨 이용권) </li>
 	            </ul>
 	            <div class="d-grid">
 	              <a href="joinMembership_ok.jsp?membership=standard" class="btn btn-mango text-uppercase">선택</a>
@@ -40,7 +42,8 @@
 	          </div>
 	        </div>
 	      </div>
-	      <!-- Plus Tier -->
+	      
+	      <!-- 프리미엄 Tier -->
 	      <div class="col-lg-4">
 	        <div class="card mb-5 mb-lg-0">
 	          <div class="card-body">
@@ -50,6 +53,9 @@
 	            <ul class="fa-ul">
 	              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>무제한 듣기</strong></li>
 	              <li><span class="fa-li"><i class="fas fa-check"></i></span>AI(같은 1조 조장의) 음악추천</li>
+	              <li><span class="fa-li"><i class="fas fa-check"></i></span>연체인간 김효은과 함께하는 파리푸르나 나바아사나 (요가 체험권)</li>
+	              <li><span class="fa-li"><i class="fas fa-check"></i></span>조류독감 박영선과 함께하는 우리나라에는 어느 새들이 살까?(캠핑권) </li>
+	              <li><span class="fa-li"><i class="fas fa-check"></i></span>돼지 김명식과 함께하는 오늘점심은 뭐먹지? (점심식사 지명권) </li>
 	            </ul>
 	            <div class="d-grid">
 	              <a href="joinMembership_ok.jsp?membership=premium" class="btn btn-mango text-uppercase">선택</a>

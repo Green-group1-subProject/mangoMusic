@@ -176,34 +176,41 @@ public class SoundTrackDAO {
 	}
 
 	public SoundTrackVO albumByNo(int alno) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-
-		SoundTrackVO vo=new SoundTrackVO();
-		try {
-			con=pool.getConnection();
-
-			String sql="select * from album where alno=?";
-			ps=con.prepareStatement(sql);
-			ps.setInt(1, alno);
-
-			rs=ps.executeQuery();
-			if(rs.next()) {
-				String alName=rs.getString("alName");
-				int reldate=rs.getInt("reldate");
-
-				vo.setAlNo(alno);
-				vo.setAlName(alName);
-				vo.setRelDate(reldate);
-			}
-			System.out.println("앨범조회 결과 vo="+vo+", 매개변수 no="+alno);
-
-			return vo;
-		}finally {
-			pool.dbClose(rs, ps, con);
-		}
-	}
+	      Connection con=null;
+	      PreparedStatement ps=null;
+	      ResultSet rs=null;
+	      
+	      SoundTrackVO vo=new SoundTrackVO();
+	      try {
+	         con=pool.getConnection();
+	         
+	         String sql="select s.arno arno,alname, reldate, (select arname from artist r where r.arno=s.arno) arname\r\n"
+	               + "from album l left join soundtrack s\r\n"
+	               + "on l.alno=s.alno\r\n"
+	               + "where l.alno=?";
+	         ps=con.prepareStatement(sql);
+	         ps.setInt(1, alno);
+	         
+	         rs=ps.executeQuery();
+	         if(rs.next()) {
+	            String alName=rs.getString("alName");
+	            int reldate=rs.getInt("reldate");
+	            String arName=rs.getString("arName");
+	            int arNo=rs.getInt("arNo");
+	            
+	            vo.setAlNo(alno);
+	            vo.setAlName(alName);
+	            vo.setRelDate(reldate);
+	            vo.setArName(arName);
+	            vo.setArNo(arNo);
+	         }
+	         System.out.println("앨범조회 결과 vo="+vo+", 매개변수 no="+alno);
+	         
+	         return vo;
+	      }finally {
+	         pool.dbClose(rs, ps, con);
+	      }
+	   }
 	//가수별 엘범리스트
 	public List<SoundTrackVO> albumList(int alno) throws SQLException{
 		Connection con=null;

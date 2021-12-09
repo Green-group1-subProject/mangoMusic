@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../inc/top.jsp" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
   <title>Bootstrap Example</title>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -12,14 +13,12 @@
 
  
   <style>
-  
-  setTimeout(function(){
-	location.reload();
-	},3000); 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
+	header{
+		position: relative;
+		width: 100%;
+		height: 60px;
+		background: #ffbc50;
+	}
     
     .row.content {height: 450px}
     
@@ -52,29 +51,24 @@
     .navbar-inverse {
     background-color: #ffffff;
     border-color: #ffffff;
-}
-.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
-    color: #333333;
-    background-color: #ffffff;
-}
+	}
+	
+	.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+	    color: #333333;
+	    background-color: #ffffff;
+	}
 
- a:focus, a:hover {
-    color: #999999;
-    text-decoration: none;
-    font-size: 20px;
-    decoration:none;
-} 
-a{
-	color: #999999;
-    text-decoration:none;
-    font-size: 15px;
-    decoration:none;
-}
+	a{
+		color: #999999;
+	    text-decoration:none;
+	    font-size: 15px;
+	    decoration:none;
+	}
 
-h2{
-	font-size:27px;
-
-}
+	h2{
+		font-size:27px;
+	
+	}
 body {
 /* 	width : 1500px;
     padding: 78px;
@@ -162,29 +156,6 @@ input[type=text]{
   </style>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Mango</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">고객센터</a></li>
-<!--         <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li> -->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
   
 <div class="container-fluid text-center">    
   <div class="row content">
@@ -202,11 +173,5 @@ input[type=text]{
     </div>
   </div>
 </div>
-<footer class="container-fluid text-center">
-  <p><b>(주)망고뮤직대표이사:김망고<br>
-주소 : 서울 강남구 테헤란로 123 (L7강남타워 9층) 문의전화:1577-1234<br>
-사업자등록번호:123-45-67890 통신판매업신고:2021-서울강남-12345<br>
-호스팅 제공자:(주)망고뮤직</b><br></p>
-</footer>
 </body>
 </html>

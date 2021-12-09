@@ -4,15 +4,15 @@
 <%@page import="java.util.List"%>
 <%@page import="com.mango.board.model.BoardDAO"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 //[1] write.jsp에서 [글목록]클릭하면 get방식으로 이동
 //또는 write_ok.jsp에서 글쓰기 성공하면 get방식으로 이동
 //[2] 검색의 경우 - list.jsp에서 검색버튼 클릭하면 post방식으로 서브밋됨
 
 //1
-request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("UTF-8");
 String condition = request.getParameter("searchCondition");
 String keyword = request.getParameter("searchKeyword");
 
@@ -71,7 +71,7 @@ int num = totalRecord - curPos; //17, 12, 7, 2
 <script type="text/javascript">
 	$(function() {
 		$('.divList .box2 tbody tr').hover(function() {
-			$(this).css('background', 'skyblue');
+			$(this).css('background', '#FFBC50');
 		}, function() {
 			$(this).css('background', '');
 		});
@@ -91,17 +91,6 @@ body {
 		<td width=10%;>번호</td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<td width=90%;>제목</td>
 	</tr>
-	<%
-	if (keyword != null && !keyword.isEmpty()) {
-	%>
-	<p>
-		검색어 :
-		<%=keyword%>,
-		<%=list.size()%>건 검색되었습니다.
-	</p>
-	<%
-	}
-	%>
 	<div class="divList">
 		<table class="box2"
 			summary="기본 게시판에 관한 표로써, 번호, 제목, 작성자, 작성일, 조회수에 대한 정보를 제공합니다.">
@@ -140,10 +129,6 @@ body {
 						id="demo<%=i%>" class="collapse"><%=vo.getcContent()%>
 					</div>
 				</div>
-
-
-
-
 				<%
 				} //for
 				%>
@@ -178,7 +163,7 @@ body {
 		} else {
 		%>
 		<a
-			href="index.jsp?currentPage=<%=i%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
+			href="boardMain.jsp?currentPage=<%=i%>&searchCondition=<%=condition%>&searchKeyword=<%=keyword%>">
 			[<%=i%>]
 		</a>
 		<%

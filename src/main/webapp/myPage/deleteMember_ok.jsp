@@ -16,7 +16,7 @@
 		if(cnt>0){ %>
 		<script type="text/javascript">
 			alert('탈퇴되었습니다.');
-			location.href="../inc/top.jsp";
+			location.href="../login/logout.jsp";
 		</script>
 	<%}else{%>
 		<script type="text/javascript">

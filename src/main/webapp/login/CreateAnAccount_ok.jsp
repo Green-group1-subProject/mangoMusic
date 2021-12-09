@@ -49,7 +49,7 @@
 	if(cnt>0){ %>
 		<script type="text/javascript">
 			alert('회원가입되었습니다.');
-			location.href="Login.jsp";
+			location.href="../main.jsp";
 		</script>
 	<%}else{%>
 		<script type="text/javascript">

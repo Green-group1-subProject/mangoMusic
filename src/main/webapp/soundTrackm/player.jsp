@@ -237,11 +237,10 @@ img#alimg {
     margin-left: 30px;
 }
 #like {
-    width: 26px;
+    width: 34px;
     border-radius: 5px;
-    float: left;
-    margin-top: -35px;
-    margin-left: 228px;
+    float: right;
+    margin-top: 5px;
 }
 
 
@@ -429,11 +428,9 @@ $(document).ready(function() {
 %>
 <body  style="overflow:hidden;">
 <div class="player">
-  <div class="title-wrap">
-    <div class="playlistIcon">
-      <i class="fa fa-list"></i>
-    </div>
+    <img src='../icon/heart.png' alt="playerlike" id='like'>
     <div class="clearfix"></div>
+   
    
 <div class="controls">
       <div class="rew">
@@ -462,11 +459,10 @@ $(document).ready(function() {
     </div>
 
 	<div class="trackDetails ">
-    	<img src='../images/alimages/1.jpg' alt="albumImg" id='alimg'>
+    	<img src='../images/logos/mango_square.jpg' alt="albumImg" id='alimg'>
       <span class="title"></span>
      
       <span class="artist"></span>
-      	<img src='../icon/playerbar.png' alt="playerlike" id='like'>
     </div>
   </div>
 </div>

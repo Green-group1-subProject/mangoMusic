@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>망고뮤직:달달한 음악이 필요할 때</title>
         <link rel="icon" type="image/x-icon" href="../images/logos/망고로고2k.png" />
@@ -28,6 +28,10 @@
 	
 .container.px-2 {
 	margin:0 auto;
+}
+
+.home-buttons{
+	color : #495057;
 }
 
 </style>
@@ -85,7 +89,7 @@
                    	 <img src="../images/standard_badge.png" class="badges right-things">
                  	<%}%>
                     <div class="dropdown text-end right-things">
-			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle home-buttons" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 			            <span><%=id %>님</span>
 			          </a>
 			          <ul class="dropdown-menu text-small" style="">
@@ -97,7 +101,7 @@
 			        </div>
                 <% }else{%>
                 	<div class="dropdown text-end">
-			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+			          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle home-buttons" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 			            <span>로그인/회원가입</span>
 			          </a>
 			          <ul class="dropdown-menu text-small" style="">

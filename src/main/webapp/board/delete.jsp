@@ -86,7 +86,7 @@ return;
 			<fieldset>
 				<legend>글 삭제</legend>
 				<div>
-				<%-- 	<span class="sp"><%=bno%>번 글을 삭제하시겠습니까?</span> --%>
+				 	<span class="sp">번 글을 삭제하시겠습니까?</span>
 				</div>
 				<div class="center">
 					<input type="submit" value="삭제" /> <input type="Button"
